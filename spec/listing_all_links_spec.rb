@@ -13,7 +13,7 @@ feature 'listing all links' do
                 title: 'Code.org',
                 tags: [Tag.first_or_create(text: 'education')])
   end
-  
+
   scenario 'filtered by a tag' do
     visit '/tags/search'
     expect(page).not_to have_content('Makers Academy')
