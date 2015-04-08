@@ -1,13 +1,13 @@
 require 'sinatra/base'
 require 'data_mapper'
 require 'rack-flash'
-require 'tag'
-require 'link'
-require 'user'
 
 env = ENV['RACK_ENV'] || 'development'
 DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 
+require './lib/tag'
+require './lib/link'
+require './lib/user'
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
@@ -46,7 +46,7 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = @user.id
       redirect to('/')
     else
-      flash[:notice] = 'Sorry, your password don\'t match'
+      flash.now[:errors] = @user.errors.full_messages
       erb :"users/new"
     end
   end
