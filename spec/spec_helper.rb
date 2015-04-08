@@ -4,6 +4,9 @@ ENV['RACK_ENV'] = 'test'
 
 require './server'
 require 'database_cleaner'
+require 'capybara/rspec'
+
+Capybara.app = BookmarkManager
 
 RSpec.configure do |config|
 
