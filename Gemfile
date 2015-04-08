@@ -17,4 +17,5 @@ group :test do
   gem 'byebug'
   gem 'dm-postgres-adapter'
   gem 'database_cleaner'
+  gem 'rack-flash3'
 end
